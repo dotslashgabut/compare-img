@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Comparison</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #1f1f1f; /* Dark background */
+      font-family: Arial, sans-serif; /* Sans-serif font */
+      color: #fff; /* Text color */
+    }
+
+    .content {
+      width: 100%;
+      max-width: 90vw; /* Adjust as needed */
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      margin: 0 auto; /* Center align horizontally */
+    }
+
+    .header {
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .url-input {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto; /* Center align horizontally */
+      margin-bottom: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between; /* Pushes elements to the sides */
+    }
+
+    .url-input input[type="text"] {
+      width: calc(50% - 64px); /* Adjust to give space for the button */
+      padding: 5px;
+      border: 1px solid #555; /* Darker border color */
+      border-radius: 5px;
+      outline: none;
+      background-color: #333; /* Dark input background */
+      color: #fff; /* Input text color */
+    }
+
+    .url-input input[type="button"] {
+      width: 80px;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50; /* Green button color */
+      color: #fff;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .url-input input[type="button"]:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+
+    .container {
+      margin: 0 auto; /* Center align horizontally */
+      max-width: 90vw;
+    }
+
+    img-comparison-slider {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 20px;
+    }
+
+    img[slot="first"],
+    img[slot="second"] {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 480px) {
+      .url-input {
+        flex-direction: column; /* Stack elements vertically */
+        justify-content: center;
+      }
+
+      .url-input input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .url-input input[type="button"] {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="header">Image Comparison</div>
+  
+    <div class="url-input">
+      <input type="text" id="firstImageUrl" placeholder="First image URL">
+      <input type="text" id="secondImageUrl" placeholder="Second image URL">
+      <input type="button" value="Compare" onclick="applyImages()">
+    </div>
+  
+    <div class="container">
+      <img-comparison-slider hover="hover">
+        <img slot="first" src="image-A.jpg" />
+        <img slot="second" src="image-B.jpg" />
+      </img-comparison-slider>
+    </div>
+  </div>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+  <script>
+    function applyImages() {
+      const firstImageUrl = document.getElementById('firstImageUrl').value;
+      const secondImageUrl = document.getElementById('secondImageUrl').value;
+
+      document.querySelector('img[slot="first"]').src = firstImageUrl;
+      document.querySelector('img[slot="second"]').src = secondImageUrl;
+    }
+  </script>
+</body>
+</html>
